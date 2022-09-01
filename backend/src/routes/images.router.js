@@ -1,6 +1,4 @@
 const express = require("express");
-const { checkJwt } = require("../authz/check-jwt");
-const connection = require('../../utilities/connect');
 const { cloudinary } = require('../../utilities/cloudinary')
 const router = express.Router();
 

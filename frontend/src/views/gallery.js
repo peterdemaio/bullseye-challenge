@@ -26,12 +26,6 @@ export default function Gallery() {
       const data = await res.json();
 
       setImageIds(data);
-      // for (let image of data) {
-      //   imageList.push({
-      //     src: `https://res.cloudinary.com/dmta8vish/image/upload/c_scale,h_300,w_300/v1/${image}`,
-      //     imageId: image
-      //   })
-      // }
     } catch (e) {
       console.log(e)
     }
