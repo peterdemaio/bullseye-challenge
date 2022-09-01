@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Upload from '../components/photoUpload';
+import UploadImage from '../components/photoUpload';
 import { useAuth0 } from '@auth0/auth0-react';
 import './gallery.css'
-import Fader from '../components/fader/fader'
+import ImageGallery from '../components/ImageGallery/ImageGallery'
 import EditImages from '../components/editImage';
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -24,14 +24,7 @@ export default function Gallery() {
         headers: { 'Content-type': 'application/json' }
       })
       const data = await res.json();
-
       setImageIds(data);
-      // for (let image of data) {
-      //   imageList.push({
-      //     src: `https://res.cloudinary.com/dmta8vish/image/upload/c_scale,h_300,w_300/v1/${image}`,
-      //     imageId: image
-      //   })
-      // }
     } catch (e) {
       console.log(e)
     }
@@ -44,7 +37,7 @@ export default function Gallery() {
         body: JSON.stringify({ imageId: imageId }),
         headers: { 'Content-type': 'application/json' }
       })
-      const response = await res.json();
+      await res.json();
       loadImages();
     } catch (e) {
       console.log(e)
@@ -67,7 +60,6 @@ export default function Gallery() {
       console.log(e)
     }
   }
-
   useEffect(() => {
     loadImages();
   }, [])
@@ -79,7 +71,7 @@ export default function Gallery() {
           <button className="btn btn-primary" style={{ float: 'right' }} onClick={(e) => setToggleImages(!toggleImages)}>{toggleImages ? "Edit images" : "Show Gallery"}</button>
         </div >
         {toggleImages ?
-          <Fader imageIds={imageIds}></Fader>
+          <ImageGallery imageIds={imageIds}></ImageGallery>
           :
           <EditImages
             imageIds={imageIds}
@@ -87,9 +79,9 @@ export default function Gallery() {
           </EditImages>
         }
         {!toggleImages &&
-          <Upload
+          <UploadImage
             handleUpload={event => handleUpload(event)}>
-          </Upload>
+          </UploadImage>
         }
       </div >
     )

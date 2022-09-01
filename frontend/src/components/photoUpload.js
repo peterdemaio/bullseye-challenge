@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 
 const Upload = ({ handleUpload }) => {
@@ -43,7 +41,7 @@ const Upload = ({ handleUpload }) => {
             {previewSource && (
                 <img
                     src={previewSource}
-                    alt="chosen image"
+                    alt="Preview"
                     style={{ height: '300px' }}
                 />
             )}

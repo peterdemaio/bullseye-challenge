@@ -1,10 +1,9 @@
 const express = require("express");
-const { checkJwt } = require("../authz/check-jwt");
-const connection = require('../../utilities/connect');
 const { cloudinary } = require('../../utilities/cloudinary')
 const router = express.Router();
 
 router.post('/gallery', async (req, res) => {
+    console.log("Getting the images")
     let id = req.body.user_id
     const { resources } = await cloudinary.search.expression
         (`folder:bullseye_challenge/${id}`)

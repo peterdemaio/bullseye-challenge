@@ -8,7 +8,7 @@ import Icon from '@mui/material/Icon';
 
 const editImage = ({ imageIds, handleDelete }) => {
     return (
-        <ImageList cols={3} rowHeight={300}>
+        <ImageList cols={4} rowHeight={300}>
             {imageIds && imageIds.map((imageId, index) => (
                 <ImageListItem key={index}>
                     <ImageListItemBar
@@ -40,8 +40,8 @@ const editImage = ({ imageIds, handleDelete }) => {
                     <Image
                         cloud_name="dmta8vish"
                         publicId={imageId}
-                        width="300"
-                        height="300"
+                        width="250"
+                        height="200"
                         crop="scale"
                     />
                 </ImageListItem>
