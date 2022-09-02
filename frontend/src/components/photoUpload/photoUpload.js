@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD:frontend/src/components/photoUpload.js
-
-
-=======
 import './photoUpload.css'
->>>>>>> master:frontend/src/components/photoUpload/photoUpload.js
+
 const Upload = ({ handleUpload }) => {
     const [fileInputState, setFileInputState] = useState('');
     const [previewSource, setPreviewSource] = useState('');
