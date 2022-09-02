@@ -3,9 +3,13 @@ import { Image } from 'cloudinary-react'
 import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
 import './imageGrid.css'
+
+
 const Fader = ({ imageIds }) => {
+
     const [displayArray, setDisplayArray] = useState(imageIds.slice(0, 12));
     let indexesToReplace = []
+
     const randomizeIndexes = () => {
         let oldIndexes = indexesToReplace
         indexesToReplace = [];
@@ -29,6 +33,7 @@ const Fader = ({ imageIds }) => {
         }
         setDisplayArray(tempArray);
     }
+
     useEffect(() => {
         const timeout = setInterval(() => {
             randomizeIndexes();

@@ -1,6 +1,5 @@
 .fade-in {
     transition: opacity 1s ease;
-    transform: scaleX(-1);
 }
 
 .fade-out {
