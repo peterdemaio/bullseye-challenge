@@ -21,8 +21,6 @@ app.use(helmet());
 app.use(cors({ origin: clientOrigins }));
 app.use(express.json({ limit: '50mb' }));
 
-
-app.use("/api", apiRouter);
 app.use("/images", images)
 
 app.use(function (err, req, res, next) {

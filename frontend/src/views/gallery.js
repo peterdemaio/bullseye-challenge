@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import UploadImage from '../components/photoUpload';
 import { useAuth0 } from '@auth0/auth0-react';
-import './gallery.css'
-import ImageGallery from '../components/ImageGallery/ImageGallery'
+import ImageGrid from '../components/imageGrid/imageGrid'
 import EditImages from '../components/editImage';
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -52,9 +50,7 @@ export default function Gallery() {
         headers: { 'Content-type': 'application/json' }
       })
       const response = await res.json();
-      console.log("back from the server ", response)
       const updatedArray = [...imageIds, response.msg]
-      console.log("Here is updatedArray: ", updatedArray)
       setImageIds(updatedArray);
     } catch (e) {
       console.log(e)
@@ -63,25 +59,22 @@ export default function Gallery() {
   useEffect(() => {
     loadImages();
   }, [])
+
   return (
     isAuthenticated && (
-      <div className="container">
+      <div>
         <div>
           <h1 className="title" style={{ display: 'inline-block' }}>My Logos</h1>
           <button className="btn btn-primary" style={{ float: 'right' }} onClick={(e) => setToggleImages(!toggleImages)}>{toggleImages ? "Edit images" : "Show Gallery"}</button>
         </div >
-        {toggleImages ?
-          <ImageGallery imageIds={imageIds}></ImageGallery>
+        {toggleImages && imageIds ?
+          <ImageGrid imageIds={imageIds}></ImageGrid>
           :
           <EditImages
             imageIds={imageIds}
-            handleDelete={event => handleDelete(event)}>
-          </EditImages>
-        }
-        {!toggleImages &&
-          <UploadImage
+            handleDelete={event => handleDelete(event)}
             handleUpload={event => handleUpload(event)}>
-          </UploadImage>
+          </EditImages>
         }
       </div >
     )
