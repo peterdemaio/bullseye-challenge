@@ -7,7 +7,6 @@ router.post('/gallery', async (req, res) => {
     const { resources } = await cloudinary.search.expression
         (`folder:bullseye_challenge/${id}`)
         .sort_by('public_id', 'desc')
-        .max_results(12)
         .execute();
     const publicIds = resources.map(file => file.public_id);
     res.send(publicIds);
@@ -22,12 +21,11 @@ router.post("/upload", async (req, res) => {
             upload_preset: `bullseye_challenge`,
             folder: `bullseye_challenge/${user_id}`
         })
-        console.log("Uploaded this image: ", uploaded.public_id)
         res.status(200);
         res.json({ msg: uploaded.public_id });
     } catch (e) {
         console.log(e)
-        res.status(500).json({ err: 'Somethign went wrong' })
+        res.status(500).json({ err: 'Something went wrong' })
     }
 })
 

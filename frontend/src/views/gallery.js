@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Upload from '../components/photoUpload';
 import { useAuth0 } from '@auth0/auth0-react';
-import './gallery.css'
-import Fader from '../components/fader/fader'
+import ImageGrid from '../components/imageGrid/imageGrid'
 import EditImages from '../components/editImage';
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -24,7 +22,6 @@ export default function Gallery() {
         headers: { 'Content-type': 'application/json' }
       })
       const data = await res.json();
-
       setImageIds(data);
     } catch (e) {
       console.log(e)
@@ -53,9 +50,7 @@ export default function Gallery() {
         headers: { 'Content-type': 'application/json' }
       })
       const response = await res.json();
-      console.log("back from the server ", response)
       const updatedArray = [...imageIds, response.msg]
-      console.log("Here is updatedArray: ", updatedArray)
       setImageIds(updatedArray);
     } catch (e) {
       console.log(e)
@@ -65,25 +60,22 @@ export default function Gallery() {
   useEffect(() => {
     loadImages();
   }, [])
+
   return (
     isAuthenticated && (
-      <div className="container">
+      <div>
         <div>
           <h1 className="title" style={{ display: 'inline-block' }}>My Logos</h1>
           <button className="btn btn-primary" style={{ float: 'right' }} onClick={(e) => setToggleImages(!toggleImages)}>{toggleImages ? "Edit images" : "Show Gallery"}</button>
         </div >
-        {toggleImages ?
-          <Fader imageIds={imageIds}></Fader>
+        {toggleImages && imageIds ?
+          <ImageGrid imageIds={imageIds}></ImageGrid>
           :
           <EditImages
             imageIds={imageIds}
-            handleDelete={event => handleDelete(event)}>
-          </EditImages>
-        }
-        {!toggleImages &&
-          <Upload
+            handleDelete={event => handleDelete(event)}
             handleUpload={event => handleUpload(event)}>
-          </Upload>
+          </EditImages>
         }
       </div >
     )
