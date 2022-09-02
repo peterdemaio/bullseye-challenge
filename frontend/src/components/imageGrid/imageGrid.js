@@ -15,11 +15,10 @@ const Fader = ({ imageIds }) => {
         indexesToReplace = [];
         while (indexesToReplace.length < 3) {
             let n = Math.floor(Math.random() * 12) //Get a random index of our images array
-            if (indexesToReplace.indexOf(n) == -1 && oldIndexes.indexOf(n) == -1) { // check if that random number is already in our random index array
+            if (indexesToReplace.indexOf(n) === -1 && oldIndexes.indexOf(n) === -1) { // check if that random number is already in our random index array
                 indexesToReplace.push(n)  // if it isn't, add it.
             }
         }
-        console.log("Here are the indexesToReplace", indexesToReplace)
     };
 
     const replaceImages = () => {
@@ -29,7 +28,6 @@ const Fader = ({ imageIds }) => {
             while (tempArray.includes(imageIds[n]) === false) { // This code should check if our displayArray already has the image we're trying to add, and if it doesn't, skip it. 
                 tempArray.splice(index, 1, imageIds[n])
             } //This ran into an infinite loop though when it skipped, and I'm not sure how to make it just try again.
-            console.log(tempArray)
         }
         setDisplayArray(tempArray);
     }

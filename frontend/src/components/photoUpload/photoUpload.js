@@ -11,7 +11,6 @@ const Upload = ({ handleUpload }) => {
         previewFile(file);
     }
     const previewFile = (file) => {
-        console.log("hidding the input");
         setShowForm(!showForm);
         const reader = new FileReader();
         reader.readAsDataURL(file);

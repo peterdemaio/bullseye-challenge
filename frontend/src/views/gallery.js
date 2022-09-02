@@ -14,7 +14,6 @@ export default function Gallery() {
   const { sub } = user;
 
   const loadImages = async () => {
-    console.log("loading the images");
     try {
       const res = await fetch(`${serverUrl}/images/gallery`, {
         method: 'POST',
